@@ -351,7 +351,7 @@ export default function Home() {
                 <DialogTitle className="absolute bottom-4 left-4 text-white text-xl font-bold drop-shadow">{selectedItem.name}</DialogTitle>
               </div>
 
-              <ScrollArea className="flex-1 px-4 py-4">
+              <ScrollArea className="flex-1 min-h-0 px-4 py-4">
 
                 {/* ── Grupos / Complementos ── */}
                 {selectedItem.groups.map(group => (
