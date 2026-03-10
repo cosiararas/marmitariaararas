@@ -33,7 +33,7 @@ type MarmitaGroup = {
   sizes: { label: string; item: MenuItem }[];
 };
 
-type ExtraSelection = { item: MenuItem; qty: number };
+type ExtraSelection = { item: MenuItem; qty: number; section: 'adicional' | 'bebida' | 'sobremesa' };
 
 // ─── Grouping Logic ──────────────────────────────────────────────────────────
 
@@ -132,7 +132,11 @@ export default function Home() {
   const openMarmitaModal = (item: MenuItem) => {
     setSelectedItem(item);
     setCurrentSelections({});
-    setExtraSelections([...bebidas, ...sobremesas].map(i => ({ item: i, qty: 0 })));
+    setExtraSelections([
+      ...adicionais.map(i => ({ item: i, qty: 0, section: 'adicional' as const })),
+      ...bebidas.map(i => ({ item: i, qty: 0, section: 'bebida' as const })),
+      ...sobremesas.map(i => ({ item: i, qty: 0, section: 'sobremesa' as const })),
+    ]);
     setModalOpen(true);
   };
 
@@ -176,8 +180,9 @@ export default function Home() {
   const extrasTotal = extraSelections.reduce((s, e) => s + e.item.basePrice * e.qty, 0);
   const modalTotal = selectedItem ? selectedItem.basePrice + additionsTotal + extrasTotal : 0;
 
-  const modalBebidas = extraSelections.filter(e => e.item.category === 'Bebidas');
-  const modalSobremesas = extraSelections.filter(e => e.item.category === 'Sobremesas');
+  const modalAdicionais = extraSelections.filter(e => e.section === 'adicional');
+  const modalBebidas = extraSelections.filter(e => e.section === 'bebida');
+  const modalSobremesas = extraSelections.filter(e => e.section === 'sobremesa');
 
   // ── Render ────────────────────────────────────────────────────────────────
 
@@ -309,19 +314,7 @@ export default function Home() {
           </section>
         )}
 
-        {/* ── Adicionais ── */}
-        {!menuLoading && adicionais.length > 0 && (
-          <section>
-            <SectionTitle emoji="➕" title="Adicionais" />
-            <div className="space-y-2">
-              {adicionais.map(item => (
-                <SimpleCard key={item.id} item={item} storeOpen={storeOpen} onAdd={() => openSimpleModal(item)} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ── Outras categorias (não Bebidas/Sobremesas — ficam no popup) ── */}
+        {/* ── Outras categorias (não Bebidas/Sobremesas/Adicionais — ficam no popup) ── */}
         {!menuLoading && otherCategories.map(([category, items]) => (
           <section key={category}>
             <SectionTitle emoji="🍽️" title={category} />
@@ -351,9 +344,9 @@ export default function Home() {
                 <DialogTitle className="absolute bottom-4 left-4 text-white text-xl font-bold drop-shadow">{selectedItem.name}</DialogTitle>
               </div>
 
-              <ScrollArea className="flex-1 min-h-0 px-4 py-4">
+              <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4">
 
-                {/* ── Grupos / Complementos ── */}
+                {/* ── Grupos / Complementos (via Supabase) ── */}
                 {selectedItem.groups.map(group => (
                   <div key={group.id} className="mb-6">
                     <div className="bg-gray-50 rounded-xl px-4 py-2.5 mb-3 flex justify-between items-center">
@@ -388,6 +381,21 @@ export default function Home() {
                   </div>
                 ))}
 
+                {/* ── Adicionais ── */}
+                {modalAdicionais.length > 0 && (
+                  <div className="mb-6">
+                    <div className="bg-gray-50 rounded-xl px-4 py-2.5 mb-3">
+                      <p className="font-bold text-sm text-gray-900">➕ Adicionais</p>
+                      <p className="text-[10px] text-gray-500 uppercase tracking-wide">Adicionar ao pedido</p>
+                    </div>
+                    <div className="space-y-2">
+                      {modalAdicionais.map(({ item, qty }) => (
+                        <ExtraItem key={item.id} item={item} qty={qty} onUpdate={delta => updateExtraQty(item.id, delta)} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* ── Bebidas ── */}
                 {modalBebidas.length > 0 && (
                   <div className="mb-6">
@@ -418,7 +426,7 @@ export default function Home() {
                   </div>
                 )}
 
-              </ScrollArea>
+              </div>
 
               {/* Footer */}
               <div className="px-4 pb-4 pt-2 border-t">
