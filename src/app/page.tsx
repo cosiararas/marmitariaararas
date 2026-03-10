@@ -216,7 +216,7 @@ export default function Home() {
               <SheetHeader className="border-b pb-3">
                 <SheetTitle className="font-bold text-lg">Seu Pedido</SheetTitle>
               </SheetHeader>
-              <ScrollArea className="flex-1 -mx-6 px-6 py-4">
+              <ScrollArea className="flex-1 min-h-0 -mx-6 px-6 py-4">
                 {cart.length === 0 ? (
                   <p className="text-center text-gray-400 mt-10 text-sm">Carrinho vazio</p>
                 ) : (
