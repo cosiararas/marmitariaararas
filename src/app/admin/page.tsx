@@ -126,9 +126,68 @@ function AdditionsSection({ item, password, onSaved }: { item: MenuItem; passwor
 function ItemsTab({ items, category, password, onSaved, onToggled }: { items: MenuItem[]; category: string; password: string; onSaved: (table: string, id: string | number, newPrice: number) => void; onToggled: (table: string, id: string | number, newActive: boolean) => void }) {
     const filtered = items.filter((i) => i.category?.name?.toLowerCase() === category.toLowerCase());
     if (filtered.length === 0) return <p className="text-stone-400 text-sm mt-6 text-center">Nenhum item encontrado.</p>;
+
+    // Agrupar por produto base (removendo prefixo de tamanho)
+    const sizeOrder: Record<string, number> = { 'Mini': 0, 'Média': 1, 'Grande': 2 };
+    const grouped = new Map<string, MenuItem[]>();
+
+    filtered.forEach((item) => {
+        // Extrair nome base (remove "Marmitex Mini - ", "Marmitex Média - ", "Marmitex Grande - ")
+        let baseName = item.name;
+        let size = '';
+
+        if (item.name.startsWith('Marmitex Mini - ')) {
+            baseName = item.name.replace('Marmitex Mini - ', '');
+            size = 'Mini';
+        } else if (item.name.startsWith('Marmitex Média - ')) {
+            baseName = item.name.replace('Marmitex Média - ', '');
+            size = 'Média';
+        } else if (item.name.startsWith('Marmitex Grande - ')) {
+            baseName = item.name.replace('Marmitex Grande - ', '');
+            size = 'Grande';
+        }
+
+        if (!grouped.has(baseName)) {
+            grouped.set(baseName, []);
+        }
+        grouped.get(baseName)!.push({ ...item, _size: size });
+    });
+
+    // Ordenar cada grupo por tamanho
+    const sortedGroups = Array.from(grouped.entries()).map(([baseName, groupItems]) => {
+        const sorted = groupItems.sort((a: any, b: any) => {
+            const orderA = sizeOrder[a._size] ?? 999;
+            const orderB = sizeOrder[b._size] ?? 999;
+            return orderA - orderB;
+        });
+        return { baseName, items: sorted };
+    });
+
+    // Ordenar grupos alfabeticamente
+    sortedGroups.sort((a, b) => a.baseName.localeCompare(b.baseName));
+
     return (
-        <div className="bg-white rounded-2xl px-4 shadow-sm border border-amber-100">
-            {filtered.map((item) => <ProductRow key={item.id} label={item.name} currentPrice={item.base_price} isActive={item.is_active} table="menu_items" id={item.id} password={password} onSaved={onSaved} onToggled={onToggled} />)}
+        <div className="space-y-6">
+            {sortedGroups.map(({ baseName, items: groupItems }) => (
+                <div key={baseName}>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2 px-1">{baseName}</h3>
+                    <div className="bg-white rounded-2xl px-4 shadow-sm border border-amber-100">
+                        {groupItems.map((item: any) => (
+                            <ProductRow
+                                key={item.id}
+                                label={item.name}
+                                currentPrice={item.base_price}
+                                isActive={item.is_active}
+                                table="menu_items"
+                                id={item.id}
+                                password={password}
+                                onSaved={onSaved}
+                                onToggled={onToggled}
+                            />
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
