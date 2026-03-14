@@ -129,7 +129,7 @@ function ItemsTab({ items, category, password, onSaved, onToggled }: { items: Me
 
     // Agrupar por produto base (removendo prefixo de tamanho)
     const sizeOrder: Record<string, number> = { 'Mini': 0, 'Média': 1, 'Grande': 2 };
-    const grouped = new Map<string, MenuItem[]>();
+    const grouped = new Map<string, any[]>();
 
     filtered.forEach((item) => {
         // Extrair nome base (remove "Marmitex Mini - ", "Marmitex Média - ", "Marmitex Grande - ")
