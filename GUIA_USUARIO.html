@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia do Usuário - Marmitaria Araras</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #10b981;
+            font-size: 32px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #10b981;
+            page-break-before: always;
+        }
+
+        h1:first-of-type {
+            page-break-before: auto;
+        }
+
+        h2 {
+            color: #059669;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #10b981;
+        }
+
+        h3 {
+            color: #047857;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+            page-break-inside: avoid;
+        }
+
+        table thead {
+            background: #10b981;
+            color: white;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #d1d5db;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f3f4f6;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .header h1 {
+            color: white;
+            border: none;
+            margin: 0;
+            padding: 0;
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            margin: 10px 0 5px 0;
+            opacity: 0.95;
+            font-size: 16px;
+        }
+
+        .step-box {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            page-break-inside: avoid;
+        }
+
+        .step-box h3 {
+            color: #10b981;
+            margin-top: 0;
+        }
+
+        .tip-box {
+            background: #fef3c7;
+            border-left: 5px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+
+        .tip-box::before {
+            content: "💡 Dica: ";
+            font-weight: bold;
+            color: #f59e0b;
+        }
+
+        .warning-box {
+            background: #fee2e2;
+            border-left: 5px solid #dc2626;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+
+        .warning-box::before {
+            content: "⚠️ Atenção: ";
+            font-weight: bold;
+            color: #dc2626;
+        }
+
+        .info-box {
+            background: #dbeafe;
+            border-left: 5px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+
+        .info-box::before {
+            content: "ℹ️ Informação: ";
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .toc {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            page-break-inside: avoid;
+            border: 2px solid #e5e7eb;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            color: #10b981;
+            border: none;
+            padding: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+        }
+
+        .toc a {
+            color: #059669;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .toc a:hover {
+            color: #10b981;
+            text-decoration: underline;
+            padding-left: 10px;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .contact-card {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e5e7eb;
+            page-break-inside: avoid;
+        }
+
+        .contact-card h3 {
+            color: #10b981;
+            margin-top: 0;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .footer h2 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .emoji {
+            font-size: 20px;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+
+            table, .step-box, .tip-box, .warning-box, .info-box {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍱 Guia do Usuário</h1>
+        <h2 style="color: white; border: none; margin: 10px 0; font-size: 28px;">Marmitaria Araras</h2>
+        <p style="font-size: 18px; margin-top: 15px;">Aprenda a fazer pedidos de forma rápida e fácil!</p>
+        <p><strong>Versão:</strong> 1.0 | <strong>Data:</strong> 17/03/2026</p>
+    </div>
+
+    <div class="toc">
+        <h2>📋 Índice</h2>
+        <ul>
+            <li><a href="#acessar">1. Como Acessar</a></li>
+            <li><a href="#pedido">2. Como Fazer um Pedido</a></li>
+            <li><a href="#personalizar">3. Personalizando seu Prato</a></li>
+            <li><a href="#entrega">4. Formas de Entrega</a></li>
+            <li><a href="#pagamento">5. Formas de Pagamento</a></li>
+            <li><a href="#acompanhar">6. Acompanhando seu Pedido</a></li>
+            <li><a href="#problemas">7. Problemas Comuns</a></li>
+            <li><a href="#contato">8. Contato</a></li>
+            <li><a href="#faq">9. Perguntas Frequentes (FAQ)</a></li>
+            <li><a href="#dicas">10. Dicas para Aproveitar Melhor</a></li>
+        </ul>
+    </div>
+
+    <h1 id="acessar">1. Como Acessar</h1>
+
+    <h2>1.1 Pelo Computador</h2>
+    <ol>
+        <li>Abra seu navegador (Chrome, Firefox, Edge, Safari)</li>
+        <li>Digite: <strong>https://marmitariaararas.com.br</strong></li>
+        <li>Pronto! Você já está no nosso cardápio online</li>
+    </ol>
+
+    <h2>1.2 Pelo Celular</h2>
+    <ol>
+        <li>Abra o navegador do seu celular</li>
+        <li>Digite: <strong>https://marmitariaararas.com.br</strong></li>
+        <li>O site se ajusta automaticamente para o celular</li>
+    </ol>
+
+    <div class="tip-box">
+        Você pode salvar o site na tela inicial do celular para acessar mais rápido, como se fosse um app!
+    </div>
+
+    <h1 id="pedido">2. Como Fazer um Pedido</h1>
+
+    <div class="step-box">
+        <h3>Passo 1: Escolha seu Prato</h3>
+        <ol>
+            <li>Na página inicial, você verá nosso <strong>cardápio completo</strong></li>
+            <li>Role a página para ver todos os pratos disponíveis</li>
+            <li>Cada prato mostra: Foto, Nome, Descrição e Preço inicial</li>
+            <li>Clique no botão <strong>"Adicionar"</strong> do prato que você quer</li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 2: Personalize (se quiser)</h3>
+        <ol>
+            <li>Uma janela vai abrir para você <strong>personalizar</strong> seu prato</li>
+            <li>Escolha o <strong>tamanho</strong> (P, M, G, GG)</li>
+            <li>Escolha os <strong>acompanhamentos</strong> que você prefere</li>
+            <li>Adicione <strong>extras</strong> (se quiser)</li>
+            <li>Veja o preço atualizar automaticamente</li>
+            <li>Clique em <strong>"Adicionar ao Carrinho"</strong></li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 3: Continue Comprando ou Finalize</h3>
+        <ul>
+            <li><strong>Quer mais pratos?</strong> Continue navegando e adicionando</li>
+            <li><strong>Pronto?</strong> Clique no <strong>carrinho</strong> (ícone no canto superior direito)</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 4: Revise seu Pedido</h3>
+        <ol>
+            <li>No carrinho, você verá todos os itens</li>
+            <li>Pode <strong>aumentar ou diminuir</strong> a quantidade</li>
+            <li>Pode <strong>remover</strong> itens que não quer mais</li>
+            <li>Veja o <strong>total</strong> do pedido</li>
+            <li>Clique em <strong>"Finalizar Pedido"</strong></li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 5: Preencha seus Dados</h3>
+        <p>Você precisa informar:</p>
+        <ul>
+            <li>✅ <strong>Nome completo</strong></li>
+            <li>✅ <strong>Telefone</strong> (com DDD)</li>
+            <li>✅ <strong>Email</strong> (para receber confirmação)</li>
+        </ul>
+
+        <p><strong>Se escolher DELIVERY:</strong></p>
+        <ul>
+            <li>✅ Endereço completo, Número, Bairro</li>
+            <li>✅ Ponto de referência (opcional, mas ajuda!)</li>
+        </ul>
+
+        <p><strong>Se escolher RETIRAR NA LOJA:</strong></p>
+        <ul>
+            <li>Você só precisa aparecer no horário escolhido</li>
+            <li>Endereço da loja: <strong>Rua Exemplo, 123 - Centro, Araras/SP</strong></li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 6: Escolha Forma de Pagamento</h3>
+        <ul>
+            <li>💳 <strong>Cartão de Crédito</strong> (até 12x)</li>
+            <li>💳 <strong>Cartão de Débito</strong></li>
+            <li>📱 <strong>Pix</strong> (pagamento instantâneo)</li>
+        </ul>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 7: Confirme e Pague</h3>
+        <ol>
+            <li>Revise tudo uma última vez</li>
+            <li>Clique em <strong>"Confirmar Pedido"</strong></li>
+            <li>Você será redirecionado para a página de pagamento segura do <strong>Mercado Pago</strong></li>
+            <li>Siga as instruções para concluir o pagamento</li>
+        </ol>
+    </div>
+
+    <div class="step-box">
+        <h3>Passo 8: Pronto!</h3>
+        <ul>
+            <li>✅ Pedido confirmado!</li>
+            <li>✅ Você receberá uma mensagem no WhatsApp</li>
+            <li>✅ Você receberá um email de confirmação</li>
+            <li>✅ Nosso time já está preparando seu pedido!</li>
+        </ul>
+    </div>
+
+    <h1 id="personalizar">3. Personalizando seu Prato</h1>
+
+    <h2>3.1 Tamanhos Disponíveis</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tamanho</th>
+                <th>Peso Aproximado</th>
+                <th>Ideal Para</th>
+                <th>Preço Base</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>P</strong> (Pequeno)</td>
+                <td>300g</td>
+                <td>Crianças ou apetite leve</td>
+                <td>R$ 18,00</td>
+            </tr>
+            <tr>
+                <td><strong>M</strong> (Médio)</td>
+                <td>450g</td>
+                <td>Adulto com apetite normal</td>
+                <td>R$ 22,00</td>
+            </tr>
+            <tr>
+                <td><strong>G</strong> (Grande)</td>
+                <td>600g</td>
+                <td>Adulto com bastante fome</td>
+                <td>R$ 26,00</td>
+            </tr>
+            <tr>
+                <td><strong>GG</strong> (Extra Grande)</td>
+                <td>800g</td>
+                <td>2 pessoas ou muito fome</td>
+                <td>R$ 32,00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3.2 Acompanhamentos</h2>
+
+    <p>Todos os pratos já vêm com:</p>
+    <ul>
+        <li>✅ <strong>Arroz branco</strong></li>
+        <li>✅ <strong>Feijão</strong></li>
+        <li>✅ <strong>Salada</strong> (alface, tomate, cenoura)</li>
+    </ul>
+
+    <p><strong>Você pode trocar ou adicionar:</strong></p>
+    <ul>
+        <li>Arroz integral (sem custo extra)</li>
+        <li>Purê de batata (+R$ 3,00)</li>
+        <li>Macarrão (+R$ 3,00)</li>
+        <li>Farofa (+R$ 2,00)</li>
+        <li>Vinagrete (+R$ 2,00)</li>
+    </ul>
+
+    <h2>3.3 Extras</h2>
+
+    <p>Quer incrementar ainda mais? Adicione:</p>
+    <ul>
+        <li>🥚 <strong>Ovo frito</strong> (+R$ 2,50)</li>
+        <li>🧀 <strong>Queijo</strong> (+R$ 3,00)</li>
+        <li>🥓 <strong>Bacon</strong> (+R$ 4,00)</li>
+        <li>🍟 <strong>Batata frita</strong> (+R$ 5,00)</li>
+        <li>🥤 <strong>Refrigerante lata</strong> (+R$ 4,50)</li>
+        <li>🥤 <strong>Suco natural 500ml</strong> (+R$ 6,00)</li>
+    </ul>
+
+    <h1 id="entrega">4. Formas de Entrega</h1>
+
+    <h2>4.1 Delivery (Entrega em Casa)</h2>
+
+    <div class="info-box">
+        Seu pedido chega em até <strong>45 minutos</strong> após a confirmação do pagamento!
+    </div>
+
+    <p><strong>Taxa de entrega:</strong></p>
+    <ul>
+        <li>Centro de Araras: <strong>R$ 5,00</strong></li>
+        <li>Bairros próximos: <strong>R$ 7,00</strong></li>
+        <li>Bairros distantes: <strong>R$ 10,00</strong></li>
+        <li>(A taxa é calculada automaticamente no checkout)</li>
+    </ul>
+
+    <p><strong>Horário de delivery:</strong></p>
+    <ul>
+        <li>Segunda a Sexta: <strong>11h às 14h</strong> e <strong>18h às 22h</strong></li>
+        <li>Sábado: <strong>11h às 15h</strong> e <strong>18h às 22h</strong></li>
+        <li>Domingo: <strong>11h às 15h</strong></li>
+    </ul>
+
+    <h2>4.2 Retirar na Loja (Pickup)</h2>
+
+    <div class="tip-box">
+        <strong>SEM TAXA DE ENTREGA!</strong> Economize retirando na loja!
+    </div>
+
+    <p><strong>Horário de retirada:</strong></p>
+    <ul>
+        <li>Segunda a Sexta: <strong>11h às 14h30</strong> e <strong>18h às 22h30</strong></li>
+        <li>Sábado: <strong>11h às 15h30</strong> e <strong>18h às 22h30</strong></li>
+        <li>Domingo: <strong>11h às 15h30</strong></li>
+    </ul>
+
+    <p><strong>Endereço da loja:</strong><br>
+    📍 <strong>Rua Exemplo, 123 - Centro, Araras/SP</strong><br>
+    (Próximo à Praça Central)</p>
+
+    <div class="tip-box">
+        Pedidos para retirada ficam prontos em <strong>20 minutos</strong> em média!
+    </div>
+
+    <h1 id="pagamento">5. Formas de Pagamento</h1>
+
+    <h2>5.1 Pix (Pagamento Instantâneo)</h2>
+
+    <div class="info-box">
+        <strong>Mais rápido, sem taxas e confirmação imediata!</strong>
+    </div>
+
+    <p><strong>Como pagar:</strong></p>
+    <ol>
+        <li>Escolha "Pix" no checkout</li>
+        <li>Abra o app do seu banco</li>
+        <li>Escaneie o QR Code OU copie o código Pix</li>
+        <li>Confirme o pagamento</li>
+        <li>Pronto! Seu pedido entra na fila de preparo</li>
+    </ol>
+
+    <div class="warning-box">
+        O Pix expira em <strong>30 minutos</strong>. Se não pagar neste prazo, o pedido é cancelado automaticamente.
+    </div>
+
+    <h2>5.2 Cartão de Crédito</h2>
+
+    <p><strong>Vantagens:</strong></p>
+    <ul>
+        <li>✅ Parcelamento em até 12x</li>
+        <li>✅ Seguro via Mercado Pago</li>
+        <li>✅ Aceita todos os cartões principais</li>
+    </ul>
+
+    <p><strong>Bandeiras aceitas:</strong> Visa, Mastercard, Elo, Amex, Hipercard</p>
+
+    <p><strong>Parcelamento:</strong></p>
+    <ul>
+        <li>Até R$ 50: À vista</li>
+        <li>R$ 50 a R$ 100: Até 3x sem juros</li>
+        <li>Acima de R$ 100: Até 12x (juros da operadora)</li>
+    </ul>
+
+    <h2>5.4 Segurança</h2>
+
+    <div class="info-box">
+        <strong>Seus dados estão seguros!</strong>
+        <ul style="margin-top: 10px;">
+            <li>🔒 Pagamento processado pelo <strong>Mercado Pago</strong></li>
+            <li>🔒 Conexão criptografada (HTTPS)</li>
+            <li>🔒 Não armazenamos dados do seu cartão</li>
+            <li>🔒 Certificado SSL válido</li>
+        </ul>
+    </div>
+
+    <h1 id="acompanhar">6. Acompanhando seu Pedido</h1>
+
+    <h2>6.1 Após Confirmação do Pagamento</h2>
+
+    <p>Você receberá:</p>
+    <ol>
+        <li>✅ <strong>Mensagem no WhatsApp</strong> com resumo do pedido</li>
+        <li>✅ <strong>Email de confirmação</strong> com detalhes</li>
+        <li>✅ <strong>Número do pedido</strong> (ex: #12345)</li>
+    </ol>
+
+    <h2>6.2 Status do Pedido</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>O que significa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>💳 <strong>Aguardando Pagamento</strong></td>
+                <td>Estamos esperando a confirmação do seu pagamento</td>
+            </tr>
+            <tr>
+                <td>✅ <strong>Pagamento Confirmado</strong></td>
+                <td>Recebemos seu pagamento!</td>
+            </tr>
+            <tr>
+                <td>👨‍🍳 <strong>Em Preparo</strong></td>
+                <td>Nosso time está preparando seu pedido com carinho</td>
+            </tr>
+            <tr>
+                <td>📦 <strong>Pronto</strong></td>
+                <td>Seu pedido está pronto! (se retirada na loja)</td>
+            </tr>
+            <tr>
+                <td>🚗 <strong>Saiu para Entrega</strong></td>
+                <td>O motoboy está a caminho! (se delivery)</td>
+            </tr>
+            <tr>
+                <td>✅ <strong>Entregue</strong></td>
+                <td>Pedido concluído! Bom apetite!</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>6.4 Previsão de Tempo</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Preparo</th>
+                <th>Entrega</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>⏱️ <strong>Retirar na loja</strong></td>
+                <td>15-25 min</td>
+                <td>-</td>
+                <td><strong>~20 minutos</strong></td>
+            </tr>
+            <tr>
+                <td>⏱️ <strong>Delivery</strong></td>
+                <td>15-25 min</td>
+                <td>15-30 min</td>
+                <td><strong>30-45 minutos</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 id="problemas">7. Problemas Comuns</h1>
+
+    <h2>7.1 "Não consigo finalizar o pedido"</h2>
+
+    <p><strong>Possíveis causas e soluções:</strong></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Problema</th>
+                <th>Solução</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Carrinho vazio</td>
+                <td>Adicione pelo menos um item ao carrinho</td>
+            </tr>
+            <tr>
+                <td>Dados incompletos</td>
+                <td>Preencha todos os campos obrigatórios</td>
+            </tr>
+            <tr>
+                <td>Telefone inválido</td>
+                <td>Use o formato (19) 99999-9999 (com DDD)</td>
+            </tr>
+            <tr>
+                <td>Erro de conexão</td>
+                <td>Verifique sua internet e tente novamente</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7.2 "Pagamento não foi aprovado"</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Causa</th>
+                <th>Solução</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cartão sem saldo/limite</td>
+                <td>Tente outro cartão ou use Pix</td>
+            </tr>
+            <tr>
+                <td>Dados do cartão incorretos</td>
+                <td>Verifique número, CVV e validade</td>
+            </tr>
+            <tr>
+                <td>Cartão bloqueado/vencido</td>
+                <td>Entre em contato com seu banco</td>
+            </tr>
+            <tr>
+                <td>Limite de compra excedido</td>
+                <td>Libere limite com seu banco ou use Pix</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1 id="contato">8. Contato</h1>
+
+    <div class="contact-card">
+        <h3>📱 WhatsApp (Preferencial)</h3>
+        <p><strong>Número:</strong> (19) 99999-9999</p>
+        <p><strong>Horário:</strong> Seg-Sáb 10h-22h | Dom 10h-15h</p>
+        <p><strong>Tempo de resposta:</strong> Até 5 minutos</p>
+    </div>
+
+    <div class="contact-card">
+        <h3>📞 Telefone</h3>
+        <p><strong>Número:</strong> (19) 3541-XXXX</p>
+        <p><strong>Horário:</strong> Seg-Sex 11h-14h e 18h-22h</p>
+    </div>
+
+    <div class="contact-card">
+        <h3>📧 Email</h3>
+        <p><strong>Email:</strong> contato@marmitariaararas.com.br</p>
+        <p><strong>Tempo de resposta:</strong> Até 24 horas úteis</p>
+    </div>
+
+    <div class="contact-card">
+        <h3>📍 Presencial</h3>
+        <p><strong>Endereço:</strong> Rua Exemplo, 123 - Centro, Araras/SP</p>
+        <p><strong>Horário:</strong> Seg-Sex 11h-14h30 e 18h-22h30</p>
+    </div>
+
+    <h1 id="faq">9. Perguntas Frequentes (FAQ)</h1>
+
+    <h3>Qual o pedido mínimo?</h3>
+    <p>Não há pedido mínimo! Você pode pedir a partir de 1 marmita.</p>
+
+    <h3>Posso fazer pedido para mais tarde?</h3>
+    <p>No momento, só fazemos pedidos para entrega imediata (30-45 min). Agendamento está em desenvolvimento!</p>
+
+    <h3>É seguro pagar online?</h3>
+    <p>SIM! Usamos o Mercado Pago, líder em segurança digital. Seus dados são criptografados e não armazenamos informações do cartão.</p>
+
+    <h3>Posso pagar na entrega?</h3>
+    <p>No momento, só aceitamos pagamento online. Mas aceitamos Pix (sem taxas e instantâneo)!</p>
+
+    <h3>Vocês têm opções vegetarianas?</h3>
+    <p>SIM! Temos pratos vegetarianos toda semana. Indique no pedido se for vegetariano, adaptamos os acompanhamentos.</p>
+
+    <h1 id="dicas">10. Dicas para Aproveitar Melhor</h1>
+
+    <h2>💰 Economize</h2>
+    <ul>
+        <li>Use Pix: Sem taxas extras!</li>
+        <li>Retire na loja: Economize a taxa de entrega</li>
+        <li>Siga no Instagram: Promoções exclusivas para seguidores</li>
+        <li>Indique amigos: Ganhe desconto no próximo pedido</li>
+    </ul>
+
+    <h2>⏱️ Evite Espera</h2>
+    <ul>
+        <li>Peça fora do horário de pico (13h30-14h e 19h30-20h)</li>
+        <li>Prefira retirar na loja (~20 min vs 45 min delivery)</li>
+    </ul>
+
+    <h2>🍴 Personalize do Seu Jeito</h2>
+    <ul>
+        <li>Explore diferentes combinações de acompanhamentos</li>
+        <li>Adicione extras para tornar único</li>
+        <li>Use o campo de observações: "Bem temperado", "Sem cebola", "Salada separada"</li>
+    </ul>
+
+    <div class="footer">
+        <h2>🍱 Agradecemos sua Preferência!</h2>
+        <p style="font-size: 18px; margin: 20px 0;">A Marmitaria Araras é feita com carinho para você.</p>
+        <p><strong>Bom apetite e até o próximo pedido!</strong></p>
+        <p style="margin-top: 30px; opacity: 0.9;">Versão 1.0 - 17/03/2026</p>
+        <p>📧 contato@marmitariaararas.com.br | 📱 (19) 99999-9999</p>
+    </div>
+</body>
+</html>
