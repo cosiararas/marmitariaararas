@@ -1,0 +1,17 @@
+# robots.txt para Marmitaria Araras
+# https://marmitariaararas.com.br
+
+# Permitir todos os bots
+User-agent: *
+Allow: /
+
+# Bloquear páginas administrativas/checkout intermediário
+Disallow: /checkout/
+Disallow: /api/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://marmitariaararas.com.br/sitemap.xml
+
+# Crawl-delay (opcional - ajustar se necessário)
+# Crawl-delay: 1

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fundo circular verde -->
+  <circle cx="50" cy="50" r="50" fill="#10b981"/>
+
+  <!-- Marmita (retângulo arredondado) -->
+  <rect x="25" y="35" width="50" height="35" rx="5" fill="#ffffff"/>
+
+  <!-- Tampa da marmita -->
+  <rect x="25" y="30" width="50" height="8" rx="4" fill="#f3f4f6"/>
+
+  <!-- Detalhe central (representa comida) -->
+  <circle cx="50" cy="52" r="8" fill="#f59e0b"/>
+
+  <!-- Texto "M" -->
+  <text x="50" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1f2937" text-anchor="middle">M</text>
+</svg>
