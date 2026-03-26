@@ -1,14 +1,24 @@
-import { supabaseAdmin } from './supabase-admin';
+import { createClient } from '@supabase/supabase-js';
 import { MENU_DATA, MenuItem, MenuGroup } from '@/data/menu';
 
 /**
  * Busca o cardapio server-side (para SSR/SEO).
- * Usa supabaseAdmin (service role) — nunca importar no client.
+ * Usa anon key (respeita RLS) — seguro para build e runtime.
  * Fallback para MENU_DATA estatico se Supabase falhar.
  */
 export async function getMenuServer(): Promise<MenuItem[]> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !key) {
+    console.warn("menu-server: env vars ausentes, usando MENU_DATA");
+    return MENU_DATA;
+  }
+
   try {
-    const { data: dishes, error } = await supabaseAdmin
+    const supabase = createClient(url, key);
+
+    const { data: dishes, error } = await supabase
       .from('menu_items')
       .select(`
         id,
