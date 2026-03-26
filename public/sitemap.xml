@@ -1,55 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Página Principal -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://marmitariaararas.com.br/</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Monte Sua Marmita -->
   <url>
-    <loc>https://marmitariaararas.com.br/monte-sua-marmita</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <loc>https://marmitariaararas.com.br/privacy</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
-
-  <!-- Cardápio do Dia -->
-  <url>
-    <loc>https://marmitariaararas.com.br/cardapio-do-dia</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Carrinho -->
-  <url>
-    <loc>https://marmitariaararas.com.br/carrinho</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Contato -->
-  <url>
-    <loc>https://marmitariaararas.com.br/contato</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Sobre -->
-  <url>
-    <loc>https://marmitariaararas.com.br/sobre</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
 </urlset>

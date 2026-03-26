@@ -7,16 +7,76 @@ const playfair = Playfair_Display({ variable: "--font-serif", subsets: ["latin"]
 const outfit = Outfit({ variable: "--font-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Marmitaria Araras | Cardapio Premium",
-  description: "O melhor sabor da regiao em embalagens praticas e seguras.",
+  title: "Marmitaria Araras SP | Marmitex Caseiro Delivery | Seg-Sex 11h-15h",
+  description: "Marmitex caseiro em Araras SP. Nota 4.9 no iFood com Selo Super. Delivery seg-sex 11h as 15h. Peca direto sem taxa de app. A partir de R$18.",
+  openGraph: {
+    title: "Marmitaria Araras SP | Marmitex Caseiro Delivery",
+    description: "Marmitex caseiro em Araras SP. Nota 4.9 no iFood com Selo Super. Delivery seg-sex 11h as 15h. Peca direto sem taxa de app.",
+    url: "https://marmitariaararas.com.br",
+    siteName: "Marmitaria Araras",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "https://marmitariaararas.com.br/logo.png", width: 512, height: 512, alt: "Marmitaria Araras" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marmitaria Araras SP | Marmitex Caseiro Delivery",
+    description: "Marmitex caseiro em Araras SP. Nota 4.9 no iFood com Selo Super. Delivery seg-sex 11h as 15h.",
+    images: ["https://marmitariaararas.com.br/logo.png"],
+  },
+  alternates: {
+    canonical: "https://marmitariaararas.com.br",
+  },
 };
 
 const PIXEL_ID = "1252153586858603";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Marmitaria Araras",
+  "description": "Marmitex caseiro delivery em Araras SP",
+  "url": "https://marmitariaararas.com.br",
+  "telephone": "+5519971644177",
+  "email": "contato@marmitariaararas.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Dona Renata, 564",
+    "addressLocality": "Araras",
+    "addressRegion": "SP",
+    "postalCode": "13600-000",
+    "addressCountry": "BR",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -22.3567,
+    "longitude": -47.3836,
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "11:00",
+    "closes": "15:00",
+  },
+  "servesCuisine": "Comida Brasileira",
+  "priceRange": "$$",
+  "image": "https://marmitariaararas.com.br/logo.png",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "125",
+    "bestRating": "5",
+  },
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script id="meta-pixel" strategy="afterInteractive">{`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
