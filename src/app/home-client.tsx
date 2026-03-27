@@ -345,6 +345,70 @@ export default function HomeClient({ initialMenu }: { initialMenu: MenuItem[] })
           </section>
         ))}
 
+        {/* ── Por que pedir direto? ── */}
+        <section className="mt-4">
+          <SectionTitle emoji="💰" title="Por que pedir direto?" />
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3 className="font-bold text-sm text-gray-900">Sem taxa de app</h3>
+              <p className="text-xs text-gray-500 mt-1 leading-relaxed">Voce economiza em cada pedido. Mesmo sabor, preco justo.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+              <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3 className="font-bold text-sm text-gray-900">Atendimento direto</h3>
+              <p className="text-xs text-gray-500 mt-1 leading-relaxed">Fale com a gente pelo WhatsApp. Rapido e personalizado.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+              <h3 className="font-bold text-sm text-gray-900">Pagamento seguro</h3>
+              <p className="text-xs text-gray-500 mt-1 leading-relaxed">Pague online com MercadoPago. Pix, cartao ou boleto.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+              <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-orange-600"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/><path d="M12 3v6"/></svg>
+              </div>
+              <h3 className="font-bold text-sm text-gray-900">Entrega com carinho</h3>
+              <p className="text-xs text-gray-500 mt-1 leading-relaxed">Sua marmita fresquinha, do jeito que voce pediu.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Como funciona ── */}
+        <section className="mt-4">
+          <SectionTitle emoji="📋" title="Como funciona" />
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-bold text-lg flex items-center justify-center mx-auto mb-2">1</div>
+                <h3 className="font-bold text-sm text-gray-900">Escolha</h3>
+                <p className="text-xs text-gray-500 mt-1">Veja o cardapio e escolha sua marmita</p>
+              </div>
+              <div className="text-center">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-bold text-lg flex items-center justify-center mx-auto mb-2">2</div>
+                <h3 className="font-bold text-sm text-gray-900">Personalize</h3>
+                <p className="text-xs text-gray-500 mt-1">Monte do seu jeito, com o que preferir</p>
+              </div>
+              <div className="text-center">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-bold text-lg flex items-center justify-center mx-auto mb-2">3</div>
+                <h3 className="font-bold text-sm text-gray-900">Pague online</h3>
+                <p className="text-xs text-gray-500 mt-1">Pagamento seguro pelo MercadoPago</p>
+              </div>
+              <div className="text-center">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-white font-bold text-lg flex items-center justify-center mx-auto mb-2">4</div>
+                <h3 className="font-bold text-sm text-gray-900">Receba</h3>
+                <p className="text-xs text-gray-500 mt-1">Entrega rapida no conforto da sua casa</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       {/* ── Footer ── */}
@@ -385,7 +449,10 @@ export default function HomeClient({ initialMenu }: { initialMenu: MenuItem[] })
           </div>
           <div className="border-t border-stone-800 pt-4 flex items-center justify-between text-xs text-stone-500">
             <span>4.9/5.0 no iFood | Selo Super | 125+ avaliacoes</span>
-            <a href="/privacy" className="hover:text-stone-300 transition-colors">Privacidade</a>
+            <div className="flex gap-3">
+              <a href="/sobre" className="hover:text-stone-300 transition-colors">Sobre</a>
+              <a href="/privacy" className="hover:text-stone-300 transition-colors">Privacidade</a>
+            </div>
           </div>
         </div>
       </footer>
