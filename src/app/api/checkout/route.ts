@@ -91,38 +91,46 @@ export async function POST(request: Request) {
     const mpToken = process.env.MP_ACCESS_TOKEN;
     let checkoutUrl: string | null = null;
 
-    if (mpToken && mpToken !== 'SEU_TOKEN_DO_MERCADO_PAGO_AQUI') {
-      try {
-        const mpClient = new MercadoPagoConfig({ accessToken: mpToken });
-        const preferenceClient = new Preference(mpClient);
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-        const mpResponse = await preferenceClient.create({
-          body: {
-            items: cart.map((item: any) => ({
-              id: item.cartId ?? item.id ?? 'item',
-              title: item.menuItem?.name ?? 'Item',
-              quantity: Number(item.quantity) || 1,
-              unit_price: Number(((itemPriceMap.get(item.menuItem?.id) ?? 0) + Object.values(item.selectedAdditions ?? {}).flat().reduce((s: number, a: any) => s + (additionPriceMap.get(a.id) ?? 0), 0)).toFixed(2)),
-              currency_id: 'BRL',
-            })),
-            payer: { name: customerInfo.nome.trim(), phone: { area_code: '', number: customerInfo.telefone.trim() } },
-            notification_url: `${appUrl}/api/mp-webhook`,
-            back_urls: {
-              success: `${appUrl}/pedido/sucesso?order_id=${orderId}`,
-              failure: `${appUrl}/pedido/falha?order_id=${orderId}`,
-              pending: `${appUrl}/pedido/pendente?order_id=${orderId}`,
-            },
-            ...(appUrl.startsWith('https://') ? { auto_return: 'approved' as const } : {}),
-            external_reference: orderId ? String(orderId) : undefined,
+    if (!mpToken || mpToken === 'SEU_TOKEN_DO_MERCADO_PAGO_AQUI') {
+      console.error("MP_ACCESS_TOKEN nao configurado ou placeholder");
+      return NextResponse.json({ success: false, error: 'Pagamento indisponivel no momento. Entre em contato pelo WhatsApp.' }, { status: 503 });
+    }
+
+    try {
+      const mpClient = new MercadoPagoConfig({ accessToken: mpToken });
+      const preferenceClient = new Preference(mpClient);
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      const mpResponse = await preferenceClient.create({
+        body: {
+          items: cart.map((item: any) => ({
+            id: item.cartId ?? item.id ?? 'item',
+            title: item.menuItem?.name ?? 'Item',
+            quantity: Number(item.quantity) || 1,
+            unit_price: Number(((itemPriceMap.get(item.menuItem?.id) ?? 0) + Object.values(item.selectedAdditions ?? {}).flat().reduce((s: number, a: any) => s + (additionPriceMap.get(a.id) ?? 0), 0)).toFixed(2)),
+            currency_id: 'BRL',
+          })),
+          payer: { name: customerInfo.nome.trim(), phone: { area_code: '', number: customerInfo.telefone.trim() } },
+          notification_url: `${appUrl}/api/mp-webhook`,
+          back_urls: {
+            success: `${appUrl}/pedido/sucesso?order_id=${orderId}`,
+            failure: `${appUrl}/pedido/falha?order_id=${orderId}`,
+            pending: `${appUrl}/pedido/pendente?order_id=${orderId}`,
           },
-        });
-        checkoutUrl = mpResponse.init_point ?? null;
-        if (orderId && mpResponse.id) {
-          await supabase.from('marmita_orders').update({ mp_preference_id: String(mpResponse.id) }).eq('id', orderId);
-        }
-      } catch (mpErr: any) {
-        console.error("Erro ao criar preferencia MP:", mpErr);
+          ...(appUrl.startsWith('https://') ? { auto_return: 'approved' as const } : {}),
+          external_reference: orderId ? String(orderId) : undefined,
+        },
+      });
+      checkoutUrl = mpResponse.init_point ?? null;
+      if (!checkoutUrl) {
+        console.error("MP retornou sem init_point:", mpResponse);
+        return NextResponse.json({ success: false, error: 'Erro ao gerar link de pagamento. Tente novamente.' }, { status: 502 });
       }
+      if (orderId && mpResponse.id) {
+        await supabase.from('marmita_orders').update({ mp_preference_id: String(mpResponse.id) }).eq('id', orderId);
+      }
+    } catch (mpErr: any) {
+      console.error("Erro ao criar preferencia MP:", mpErr);
+      return NextResponse.json({ success: false, error: 'Erro ao processar pagamento. Tente novamente.' }, { status: 502 });
     }
 
     const n8nUrl = process.env.N8N_MARMITARIA_WEBHOOK_URL;

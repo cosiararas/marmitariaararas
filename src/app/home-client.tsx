@@ -272,8 +272,9 @@ export default function HomeClient({ initialMenu }: { initialMenu: MenuItem[] })
                           try {
                             const res = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cart, total: cartTotal, customerInfo }) });
                             const data = await res.json();
+                            if (!res.ok) { alert(data.error || 'Erro ao processar pedido.'); return; }
                             if (data.checkoutUrl) window.location.href = data.checkoutUrl;
-                            else alert('Pedido registrado!');
+                            else alert('Erro: link de pagamento não gerado. Tente novamente.');
                           } catch { alert("Erro ao finalizar pedido."); }
                         }}>
                         Confirmar
